@@ -1,0 +1,276 @@
+/* ───────────────────────────────────────────────────────────────────────────
+ *  ABOUT PAGE — scoped styles (about2__* namespace to avoid global collisions)
+ *  Reuses global utilities (.container, .block, .btn, .section-title, .reach …)
+ *  and brand vars (--navy, --gold, --cream, --radius, --shadow-*, --font-head).
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Who we are: copy + photo collage ─────────────────────────────────────── */
+.about2__story {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 64px;
+  align-items: center;
+}
+.about2__copy .about2__lead {
+  color: var(--ink);
+  font-size: 1.06rem;
+  line-height: 1.7;
+  margin-top: 18px;
+}
+.about2__points {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.about2__points li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.about2__points li svg { color: var(--gold-deep); flex: none; }
+.about2__actions {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* Photo collage: a tall hero photo + two stacked photos */
+.about2__photos {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 18px;
+  min-height: 460px;
+}
+.about2__photo {
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--cream);
+}
+.about2__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.about2__photo:hover img { transform: scale(1.06); }
+.about2__photo--tall {
+  grid-row: span 2;
+}
+
+/* Floating "4 divisions" chip over the collage */
+.about2__chip {
+  position: absolute;
+  left: -14px;
+  bottom: -22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--navy);
+  color: #fff;
+  padding: 16px 22px 16px 16px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  max-width: 320px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.about2__chip-n {
+  font-family: var(--font-head);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(216, 170, 78, 0.16);
+  flex: none;
+}
+.about2__chip strong { display: block; font-size: 0.98rem; }
+.about2__chip span { font-size: 0.8rem; opacity: 0.7; }
+
+/* ── Division cards (linked) ──────────────────────────────────────────────── */
+.about2__divs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 8px;
+}
+.about2__div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.about2__div:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--c);
+}
+.about2__div-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.about2__div-ic {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.about2__div-idx {
+  font-family: var(--font-head);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--cs);
+  -webkit-text-stroke: 1px var(--c);
+}
+.about2__div h3 {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  margin: 0 0 8px;
+}
+.about2__div p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0 0 18px;
+  flex: 1;
+}
+.about2__div-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--c);
+  margin-top: auto;
+}
+.about2__div-link svg { transition: transform 0.3s ease; }
+.about2__div:hover .about2__div-link svg { transform: translateX(4px); }
+
+/* ── Why Aerovexa feature cards ───────────────────────────────────────────── */
+.about2__why {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 8px;
+}
+.about2__why-card {
+  position: relative;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px 26px 28px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.about2__why-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+.about2__why-n {
+  display: inline-grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--gold-deep);
+  background: rgba(216, 170, 78, 0.16);
+  margin-bottom: 16px;
+}
+.about2__why-card h4 {
+  font-family: var(--font-head);
+  font-size: 1.12rem;
+  margin: 0 0 8px;
+  color: var(--navy);
+}
+.about2__why-card p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Certifications strip ─────────────────────────────────────────────────── */
+.about2__certs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 8px;
+}
+.about2__cert {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--navy);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.about2__cert:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  color: var(--gold-deep);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .about2__story {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .about2__photos {
+    min-height: 0;
+    margin-bottom: 8px;
+  }
+  .about2__divs { grid-template-columns: repeat(2, 1fr); }
+  .about2__why { grid-template-columns: repeat(2, 1fr); }
+  .about2__chip { left: 8px; bottom: -18px; }
+}
+
+@media (max-width: 600px) {
+  .about2__photos {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+  .about2__photo--tall { grid-row: auto; }
+  .about2__photo { aspect-ratio: 16 / 10; }
+  .about2__divs { grid-template-columns: 1fr; }
+  .about2__why { grid-template-columns: 1fr; }
+  .about2__actions .btn { flex: 1; justify-content: center; }
+  .about2__chip {
+    position: static;
+    margin-top: 18px;
+    max-width: none;
+  }
+}

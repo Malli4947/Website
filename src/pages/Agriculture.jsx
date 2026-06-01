@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import DivisionShell from '../components/DivisionShell.jsx'
-import GalleryBlock from '../components/GalleryBlock.jsx'
 import Counters from '../components/Counters.jsx'
 import CTABand from '../components/CTABand.jsx'
 import { SectionHead } from '../components/Section.jsx'
 import Reveal, { Stagger, itemVar } from '../components/Reveal.jsx'
-import { GalleryArt, ProduceArt, ShipmentArt, BannerScene, UIIcon } from '../components/Art.jsx'
-import { getDivision, agriPage, certifications } from '../data/content.js'
+import { GalleryArt, ProduceArt, ShipmentArt, BannerScene, ProcessIcon, UIIcon } from '../components/Art.jsx'
+import { agriPage, certifications } from '../data/content.js'
 
 /**
  * Agriculture — rebuilt to mirror the marutiagroproducts.in layout:
@@ -63,33 +62,106 @@ function ImgCard({ item, Art, showView }) {
   )
 }
 
+/* ---- Auto-advancing card carousel (6s + arrow controls) ------------- */
+function CardCarousel({ items, Art, showView = false, interval = 6000 }) {
+  const trackRef = useRef(null)
+  const [idx, setIdx] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  // bring the active card to the start of the track
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+    const card = track.children[idx]
+    if (card) track.scrollTo({ left: card.offsetLeft, behavior: 'smooth' })
+  }, [idx])
+
+  // auto-advance every `interval`; the timer RESETS whenever idx changes
+  // (so an arrow click also waits the full 6s before the next auto-advance)
+  useEffect(() => {
+    if (paused || items.length <= 1) return
+    const t = setTimeout(() => setIdx((p) => (p + 1) % items.length), interval)
+    return () => clearTimeout(t)
+  }, [idx, paused, items.length, interval])
+
+  const go = (dir) => setIdx((p) => (p + dir + items.length) % items.length)
+
+  return (
+    <div className="carousel" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      <button className="carousel__nav prev" onClick={() => go(-1)} aria-label="Previous">
+        <UIIcon name="arrow" size={20} />
+      </button>
+      <motion.div
+        className="carousel__track"
+        ref={trackRef}
+        initial="hide"
+        whileInView="show"
+        viewport={{ once: true, margin: '-60px' }}
+        variants={{ show: { transition: { staggerChildren: 0.06 } } }}
+      >
+        {items.map((it) => (
+          <ImgCard key={it.name} item={it} Art={Art} showView={showView} />
+        ))}
+      </motion.div>
+      <button className="carousel__nav next" onClick={() => go(1)} aria-label="Next">
+        <UIIcon name="arrow" size={20} />
+      </button>
+      <div className="carousel__dots">
+        {items.map((_, k) => (
+          <button key={k} className={`carousel__dot ${k === idx ? 'active' : ''}`} onClick={() => setIdx(k)} aria-label={`Go to slide ${k + 1}`} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Agriculture() {
   useEffect(() => { document.title = 'Agriculture · Aerovexa Exim Private Limited' }, [])
-  const d = getDivision('agriculture')
 
-  /* rotating hero banner */
+  /* rotating hero banner — auto-advance every 5s + arrow controls */
   const [bi, setBi] = useState(0)
+  const [paused, setPaused] = useState(false)
   const banners = agriPage.banners
   useEffect(() => {
-    const t = setInterval(() => setBi((p) => (p + 1) % banners.length), 5500)
+    if (paused) return
+    const t = setInterval(() => setBi((p) => (p + 1) % banners.length), 5000)
     return () => clearInterval(t)
-  }, [banners.length])
+  }, [banners.length, paused])
+  const go = (dir) => setBi((p) => (p + dir + banners.length) % banners.length)
   const b = banners[bi]
 
   return (
     <DivisionShell id="agriculture">
-      {/* ── Rotating photo hero banner ───────────────────────────── */}
-      <section className="ship-banner">
+      {/* ── Rotating photo hero banner (auto + arrows) ───────────── */}
+      <section
+        className="ship-banner"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
         <div className="ship-banner__scene">
-          <Photo
-            className="ship-banner__photo"
-            src={b.img}
-            alt=""
-            fallback={<BannerScene />}
-          />
+          <AnimatePresence>
+            <motion.div
+              key={bi}
+              className="ship-banner__slide"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.1, ease: 'easeInOut' }}
+            >
+              <Photo className="ship-banner__photo" src={b.img} alt="" fallback={<BannerScene />} />
+            </motion.div>
+          </AnimatePresence>
         </div>
         <div className="ship-banner__overlay" />
         <div className="ship-banner__pattern" />
+
+        <button className="ship-banner__nav prev" onClick={() => go(-1)} aria-label="Previous slide">
+          <UIIcon name="arrow" size={24} />
+        </button>
+        <button className="ship-banner__nav next" onClick={() => go(1)} aria-label="Next slide">
+          <UIIcon name="arrow" size={24} />
+        </button>
+
         <div className="container ship-banner__inner">
           <nav className="breadcrumb" aria-label="Breadcrumb">
             <Link to="/">Home</Link><span>/</span><span className="here">Agriculture</span>
@@ -97,10 +169,10 @@ export default function Agriculture() {
           <AnimatePresence mode="wait">
             <motion.div
               key={bi}
-              initial={{ opacity: 0, y: 22 }}
+              initial={{ opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              exit={{ opacity: 0, y: -18 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className="ship-banner__eyebrow">{b.eyebrow}</span>
               <h1>{b.title.split('\n').map((l, k) => <span key={k}>{l}<br /></span>)}</h1>
@@ -109,13 +181,27 @@ export default function Agriculture() {
           </AnimatePresence>
           <div className="ship-banner__cta">
             <a href="#products" className="btn btn-gold">View Products <UIIcon name="arrow" size={18} /></a>
-            <Link to="/contact" className="btn btn-light">Request a Quote</Link>
           </div>
           <div className="ship-banner__dots">
             {banners.map((_, k) => (
               <button key={k} className={`ship-banner__dot ${k === bi ? 'active' : ''}`} onClick={() => setBi(k)} aria-label={`Banner ${k + 1}`} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Shop-by-category image strip (maruti-style) ──────────── */}
+      <section className="block agri-cats">
+        <div className="container">
+          <SectionHead eyebrow="Our Range" title="Shop by Category" sub="Premium rice, hand-selected spices, refined sugar and wholesome pulses — exported worldwide." />
+          <Stagger className="catstrip">
+            {agriPage.productCats.map((c) => (
+              <motion.a key={c.name} href={c.to} className="catcard" variants={itemVar}>
+                <div className="catcard__img"><img src={c.img} alt={c.name} loading="lazy" /></div>
+                <span className="catcard__label">{c.name}</span>
+              </motion.a>
+            ))}
+          </Stagger>
         </div>
       </section>
 
@@ -171,14 +257,12 @@ export default function Agriculture() {
           <Stagger className="aproc-grid">
             {agriPage.process.map((p, i) => (
               <motion.div className="aproc" key={p.title} variants={itemVar}>
-                <div className="aproc__img">
-                  <span className="aproc__step">Step {String(i + 1).padStart(2, '0')}</span>
-                  <Photo src={p.img} alt={p.title} fallback={<ProduceArt kind={p.kind || 'sonamasoori'} />} />
+                <div className="aproc__ic">
+                  <ProcessIcon kind={p.kind} size={34} />
+                  <span className="aproc__step">{String(i + 1).padStart(2, '0')}</span>
                 </div>
-                <div className="aproc__body">
-                  <h5>{p.title}</h5>
-                  <p>{p.desc}</p>
-                </div>
+                <h5>{p.title}</h5>
+                <p>{p.desc}</p>
               </motion.div>
             ))}
           </Stagger>
@@ -189,23 +273,15 @@ export default function Agriculture() {
       <section className="block" id="products">
         <div className="container">
           <SectionHead eyebrow="Top Quality Products" title="Premium Rice Varieties" sub="Sorted, polished and graded to perfection — the heart of our agri-export." />
-          <Stagger className="prod-grid">
-            {agriPage.varieties.map((it) => (
-              <ImgCard key={it.name} item={it} Art={ProduceArt} showView />
-            ))}
-          </Stagger>
+          <CardCarousel items={agriPage.varieties} Art={ProduceArt} />
         </div>
       </section>
 
       {/* ── Spices, sugar & pulses ───────────────────────────────── */}
-      <section className="block block--cream">
+      <section className="block block--cream" id="beyond-rice">
         <div className="container">
           <SectionHead eyebrow="Beyond Rice" title="Spices, Sugar &amp; Pulses" sub="A full agri-basket to complement our rice exports." />
-          <Stagger className="prod-grid">
-            {agriPage.alsoExport.map((it) => (
-              <ImgCard key={it.name} item={it} Art={ProduceArt} showView />
-            ))}
-          </Stagger>
+          <CardCarousel items={agriPage.alsoExport} Art={ProduceArt} />
         </div>
       </section>
 
@@ -216,7 +292,7 @@ export default function Agriculture() {
           <Stagger className="why-grid">
             {agriPage.whyChoose.map((w) => (
               <motion.div className="why-card" key={w.t} variants={itemVar}>
-                <span className="why-card__n"><UIIcon name="arrow" size={22} /></span>
+                <span className="why-card__n"><ProcessIcon kind={w.kind} size={26} /></span>
                 <h4>{w.t}</h4>
                 <p>{w.d}</p>
               </motion.div>
@@ -288,11 +364,7 @@ export default function Agriculture() {
             title="Shipment Types We Handle"
             sub="From a single container to full bulk vessels — we move your produce by the mode that fits the cargo, route and timeline."
           />
-          <Stagger className="ship-grid">
-            {agriPage.shipmentTypes.map((it) => (
-              <ImgCard key={it.name} item={it} Art={ShipmentArt} />
-            ))}
-          </Stagger>
+          <CardCarousel items={agriPage.shipmentTypes} Art={ShipmentArt} />
         </div>
       </section>
 
@@ -306,8 +378,31 @@ export default function Agriculture() {
         </div>
       </section>
 
-      {/* ── Gallery + CTA ────────────────────────────────────────── */}
-      <GalleryBlock title="Agriculture Gallery" name="Agriculture" items={d.gallery} alt />
+      {/* ── Seed-to-Shipment journey (real photos) ───────────────── */}
+      <section className="block" id="journey">
+        <div className="container">
+          <SectionHead
+            eyebrow="Farm to Export"
+            title="Our Journey — Seed to Shipment"
+            sub="Follow every grain from the paddy field to your port — one accountable partner, start to finish."
+          />
+          <Stagger className="journey-grid">
+            {agriPage.journey.map((j, i) => (
+              <motion.figure className="journey-card" key={j.title} variants={itemVar}>
+                <div className="journey-card__img">
+                  <img src={j.img} alt={j.title} loading="lazy" />
+                  <span className="journey-card__step">{String(i + 1).padStart(2, '0')}</span>
+                </div>
+                <figcaption>
+                  <h4>{j.title}</h4>
+                  <p>{j.desc}</p>
+                </figcaption>
+              </motion.figure>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
       <CTABand title="Looking to import quality Indian produce?" text="Talk to our agriculture team for samples, pricing and container-load exports." />
     </DivisionShell>
   )

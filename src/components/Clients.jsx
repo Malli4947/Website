@@ -15,7 +15,11 @@ export default function Clients() {
         <Stagger className="clients__grid">
           {clients.map((c) => (
             <motion.div className="client" key={c.name} variants={itemVar}>
-              <span className="client__mark">{c.name.charAt(0)}</span>
+              {c.logo ? (
+                <span className="client__logo"><img src={c.logo} alt={`${c.name} logo`} loading="lazy" /></span>
+              ) : (
+                <span className="client__mark">{c.name.charAt(0)}</span>
+              )}
               <div>
                 <h4>{c.name}</h4>
                 <p>{c.note}</p>

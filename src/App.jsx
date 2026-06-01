@@ -10,9 +10,9 @@ import { contact } from './data/content.js'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
-import DivisionPage from './pages/DivisionPage.jsx'
 import Agriculture from './pages/Agriculture.jsx'
-import Logistics from './pages/Logistics.jsx'
+import Gallery from './pages/Gallery.jsx'
+import DivisionShowcase from './components/DivisionShowcase.jsx'
 
 function ProgressBar() {
   const { scrollYProgress } = useScroll()
@@ -31,10 +31,11 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/electronics" element={<DivisionPage id="electronics" />} />
+          <Route path="/electronics" element={<DivisionShowcase id="electronics" />} />
           <Route path="/agriculture" element={<Agriculture />} />
-          <Route path="/jewellery" element={<DivisionPage id="jewellery" />} />
-          <Route path="/logistics" element={<Logistics />} />
+          <Route path="/jewellery" element={<DivisionShowcase id="jewellery" />} />
+          <Route path="/logistics" element={<DivisionShowcase id="logistics" />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

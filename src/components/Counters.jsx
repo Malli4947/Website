@@ -27,7 +27,11 @@ function Counter({ value, label }) {
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [inView, target, match])
+    // NOTE: `match` is intentionally excluded — String().match() returns a new
+    // array every render, which would re-trigger this effect on every animation
+    // frame and make the number flicker/restart forever.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView, target])
 
   return (
     <div className="counter" ref={ref}>

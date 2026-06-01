@@ -10,6 +10,15 @@ import { SectionHead } from '../components/Section.jsx'
 import Reveal, { Stagger, itemVar } from '../components/Reveal.jsx'
 import { DivisionIcon, UIIcon } from '../components/Art.jsx'
 import { divisions, company, globalReach } from '../data/content.js'
+import '../styles/home.css'
+
+/* Real photo header per division card (reuses on-disk division art). */
+const divImg = {
+  electronics: '/images/electronics/el-components.jpg',
+  agriculture: '/images/agri/cat-rice.jpg',
+  jewellery: '/images/jewellery/jw-diamondring.jpg',
+  logistics: '/images/agri/bn-port.jpg',
+}
 
 export default function Home() {
   return (
@@ -29,9 +38,10 @@ export default function Home() {
             {divisions.map((d) => (
               <motion.div key={d.id} variants={itemVar}>
                 <Link to={`/${d.id}`} className="divcard" style={{ '--c': d.color, '--cs': d.colorSoft }}>
-                  <div className="divcard__top">
-                    <span className="divcard__ic" style={{ background: d.color }}><DivisionIcon id={d.id} size={30} /></span>
-                    <span className="divcard__idx">{d.index}</span>
+                  <div className="divcard__media">
+                    <img src={divImg[d.id]} alt={`${d.name} division`} loading="lazy" />
+                    <span className="divcard__badge"><DivisionIcon id={d.id} size={24} /></span>
+                    <span className="divcard__num">{d.index}</span>
                   </div>
                   <h3>{d.name}</h3>
                   <p>{d.reference}</p>
@@ -60,19 +70,13 @@ export default function Home() {
               About Us <UIIcon name="arrow" size={18} />
             </Link>
           </Reveal>
-          <Reveal className="about__visual" delay={0.12}>
-            <div className="ring" style={{ width: 280, height: 280 }} />
-            <div className="ring" style={{ width: 200, height: 200 }} />
-            <div className="ring" style={{ width: 120, height: 120 }} />
-            <div style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
-              <div style={{ fontFamily: 'var(--font-head)', fontSize: '2.4rem', fontWeight: 800, color: 'var(--gold)' }}>Aerovexa</div>
-              <div style={{ letterSpacing: '0.3em', fontSize: '0.75rem', opacity: 0.8, marginTop: 6 }}>EXIM PRIVATE LIMITED</div>
-            </div>
-            <div className="about__badge">
+          <Reveal className="home-about__photo" delay={0.12}>
+            <img src="/images/about/about-warehouse.jpg" alt="Aerovexa global trade — container port operations" loading="lazy" />
+            <div className="home-about__badge">
               <span className="y">4</span>
               <div>
-                <strong style={{ display: 'block' }}>Specialised divisions</strong>
-                <span style={{ fontSize: '0.84rem', opacity: 0.75 }}>One cohesive, global brand</span>
+                <strong>Specialised divisions</strong>
+                <span>One cohesive, global brand</span>
               </div>
             </div>
           </Reveal>

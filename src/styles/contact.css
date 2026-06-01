@@ -1,0 +1,98 @@
+/* ════════════════════════════════════════════════════════════════════
+   CONTACT PAGE — info-only, fully responsive (no enquiry form)
+   ════════════════════════════════════════════════════════════════════ */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ── Company details panel ──────────────────────────────────────────── */
+.ccompany {
+  background: linear-gradient(150deg, var(--navy), var(--navy-deep));
+  color: #fff;
+  border-radius: 22px;
+  padding: 36px 34px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+.ccompany::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.12) 1px, transparent 0);
+  background-size: 22px 22px; opacity: 0.4; pointer-events: none;
+}
+.ccompany > * { position: relative; z-index: 1; }
+.ccompany__name {
+  font-family: var(--font-head);
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  line-height: 1.15;
+  color: #fff;
+}
+.ccompany__gst {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 16px; padding: 8px 14px; border-radius: 40px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16);
+  font-size: 0.92rem; letter-spacing: 0.02em; color: rgba(255,255,255,0.92);
+}
+.ccompany__gst span {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold);
+}
+.ccompany__addr {
+  display: flex; gap: 12px; align-items: flex-start;
+  margin-top: 22px; color: rgba(255,255,255,0.82); line-height: 1.6;
+}
+.ccompany__addr svg { flex-shrink: 0; color: var(--gold); margin-top: 3px; }
+.ccompany__map { margin-top: 26px; }
+.ccompany__social { display: flex; gap: 10px; margin-top: 28px; }
+.ccompany__social a {
+  width: 40px; height: 40px; border-radius: 11px;
+  display: grid; place-items: center; color: #fff;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+.ccompany__social a:hover { background: var(--gold); color: var(--navy-deep); transform: translateY(-3px); }
+
+/* ── Contact channel cards ──────────────────────────────────────────── */
+.cinfo-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.cinfo-card {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: #fff; border: 1px solid var(--line); border-radius: 18px;
+  padding: 24px 22px; height: 100%;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.cinfo-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+.cinfo-card__ic {
+  width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+  display: grid; place-items: center; color: var(--navy-deep);
+  background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+}
+.cinfo-card__body small {
+  display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+}
+.cinfo-card__body a,
+.cinfo-card__body p {
+  display: block; font-size: 1rem; color: var(--ink); font-weight: 500;
+  line-height: 1.5; word-break: break-word;
+}
+.cinfo-card__body a { transition: color 0.2s ease; }
+.cinfo-card__body a:hover { color: var(--gold-deep); }
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 540px) {
+  .cinfo-cards { grid-template-columns: 1fr; }
+  .ccompany { padding: 28px 22px; }
+  .ccompany__map { width: 100%; justify-content: center; }
+}

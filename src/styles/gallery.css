@@ -1,0 +1,91 @@
+/* ════════════════════════════════════════════════════════════════════
+   GALLERY PAGE — per-division photo grids + lightbox
+   ════════════════════════════════════════════════════════════════════ */
+/* ── Category tabs ──────────────────────────────────────────────────── */
+.gal-tabs {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  margin-bottom: 34px;
+}
+.gal-tab {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 22px; border-radius: 50px;
+  font-weight: 600; font-size: 0.98rem; color: var(--navy);
+  background: #fff; border: 1.5px solid var(--line);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.gal-tab:hover { transform: translateY(-2px); border-color: var(--c); color: var(--c); }
+.gal-tab.active { background: var(--c); border-color: var(--c); color: #fff; box-shadow: var(--shadow-md); }
+.gal-tab__count {
+  font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 30px;
+  background: var(--accent-soft); color: var(--c);
+}
+.gal-tab.active .gal-tab__count { background: rgba(255,255,255,0.22); color: #fff; }
+
+/* Category header with background photo */
+.gal-head {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 210px;
+  display: flex; align-items: flex-end;
+  padding: 32px;
+  margin-bottom: 34px;
+  background-size: cover; background-position: center;
+  box-shadow: var(--shadow-md);
+}
+.gal-head__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(115deg, color-mix(in srgb, var(--cd) 92%, transparent) 0%, color-mix(in srgb, var(--c) 55%, transparent) 100%);
+}
+.gal-head__txt { position: relative; z-index: 1; color: #fff; }
+.gal-head__eyebrow {
+  display: inline-block; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 600; background: rgba(255,255,255,0.22); padding: 5px 12px; border-radius: 30px;
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+}
+.gal-head h2 { font-family: var(--font-head); font-size: clamp(1.8rem, 4.5vw, 2.7rem); margin: 12px 0 6px; }
+.gal-head p { color: rgba(255,255,255,0.92); max-width: 640px; }
+
+/* Image grid */
+.gal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.gal-tile {
+  position: relative; aspect-ratio: 1 / 1; border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--line); cursor: pointer; padding: 0; display: block;
+  background: var(--cream); box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gal-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.gal-tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.gal-tile:hover img { transform: scale(1.09); }
+.gal-tile__cap {
+  position: absolute; inset: auto 0 0 0; z-index: 1;
+  padding: 18px 14px 12px; text-align: left; color: #fff; font-weight: 600; font-size: 0.92rem;
+  background: linear-gradient(to top, rgba(15,29,57,0.92), transparent);
+}
+.gal-tile::after {
+  content: ''; position: absolute; inset: auto 0 0 0; height: 3px; background: var(--c);
+  transform: scaleX(0); transform-origin: 0; transition: transform 0.3s ease;
+}
+.gal-tile:hover::after { transform: scaleX(1); }
+
+/* Lightbox */
+.gal-lightbox {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(8, 15, 30, 0.92);
+  display: grid; place-items: center; padding: 32px;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.gal-lightbox figure { max-width: min(1000px, 92vw); margin: 0; }
+.gal-lightbox img { width: 100%; max-height: 80vh; object-fit: contain; border-radius: 12px; box-shadow: var(--shadow-lg); }
+.gal-lightbox figcaption { color: #fff; text-align: center; margin-top: 16px; font-family: var(--font-head); font-size: 1.25rem; }
+.gal-lightbox__close {
+  position: fixed; top: 18px; right: 26px; z-index: 1;
+  width: 46px; height: 46px; border-radius: 50%;
+  font-size: 2rem; line-height: 1; color: #fff;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+  transition: background 0.2s ease;
+}
+.gal-lightbox__close:hover { background: rgba(255,255,255,0.28); }
+
+@media (max-width: 900px) { .gal-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .gal-grid { grid-template-columns: repeat(2, 1fr); } .gal-head { min-height: 160px; padding: 22px; } }

@@ -21,16 +21,29 @@ export const company = {
 
 export const contact = {
   email: 'info@aerovexaexim.com',
-  emailAlt: 'sales@aerovexaexim.com',
+  // emailAlt: 'sales@aerovexaexim.com',
   phones: ['+91 73821 14448', '+91 77994 58878'],
   whatsapp: '917382114448',
-  address: 'Aerovexa Exim Private Limited, India',
+  gstin: '36ABFCA5440F1ZW',
+  address:
+    'Flat No. 7016, 8-2-644/1/205, F.No. 205, Hiline Complex, Road No. 12, Khairatabad, Banjara Hills, Hyderabad, Telangana – 500034',
   hours: 'Mon – Sat · 9:30 AM – 7:00 PM IST',
 }
 
+/* Social media — swap these for your official profile URLs.
+   Clicking a footer/contact icon opens the matching platform in a new tab. */
+export const social = [
+  { label: 'Facebook', icon: 'facebook', url: 'https://www.facebook.com/' },
+  { label: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/' },
+  { label: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/' },
+  { label: 'X', icon: 'x', url: 'https://x.com/' },
+  { label: 'YouTube', icon: 'youtube', url: 'https://www.youtube.com/' },
+]
+
 export const clients = [
-  { name: 'Gunapatis', note: 'Trusted trade partner' },
-  { name: 'August', note: 'Strategic client' },
+  { name: 'Gunapati’s', note: 'Let’s grow together', logo: '/images/clients/gunapatis.jpg' },
+  { name: 'Survlens', note: 'Technology & surveillance partner', logo: '/images/clients/survlens.jpg' },
+  // { name: 'August Devices Inc', note: 'Strategic client' },
 ]
 
 /* Brand palette — sampled from the company logo (navy + gold) */
@@ -234,7 +247,7 @@ export const heroSlides = [
     title: 'Imported electronics,\nengineered to spec.',
     text: 'CC cameras, televisions, components, microcontrollers & gadgets — sourced globally and tuned for your market.',
     primary: { label: 'Explore Electronics', to: '/electronics' },
-    secondary: { label: 'Get a Quote', to: '/contact' },
+    secondary: { label: 'Contact Us', to: '/contact' },
   },
   {
     id: 'agriculture',
@@ -243,7 +256,7 @@ export const heroSlides = [
     title: 'Nature’s best,\nfrom farm to the world.',
     text: 'Premium rice, hand-selected spices and refined sugar — exported with farm-fresh integrity.',
     primary: { label: 'Explore Agriculture', to: '/agriculture' },
-    secondary: { label: 'Get a Quote', to: '/contact' },
+    secondary: { label: 'Contact Us', to: '/contact' },
   },
   {
     id: 'jewellery',
@@ -252,7 +265,7 @@ export const heroSlides = [
     title: 'Gold & diamond craft,\nrefined to brilliance.',
     text: 'Gold and diamond processing — chains, silver and finished pieces with export-grade precision.',
     primary: { label: 'Explore Jewellery', to: '/jewellery' },
-    secondary: { label: 'Get a Quote', to: '/contact' },
+    secondary: { label: 'Contact Us', to: '/contact' },
   },
   {
     id: 'logistics',
@@ -261,7 +274,7 @@ export const heroSlides = [
     title: 'Your global\ngrowth partner.',
     text: 'Air charter, air freight, warehousing, agri cargo, vessel operating & chartering — origin to destination.',
     primary: { label: 'Explore Logistics', to: '/logistics' },
-    secondary: { label: 'Get a Quote', to: '/contact' },
+    secondary: { label: 'Contact Us', to: '/contact' },
   },
 ]
 
@@ -441,33 +454,76 @@ export const divisionExtras = {
    broken URL will never show a broken-image icon.
    ════════════════════════════════════════════════════════════════════ */
 
-const U = (id) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1100&q=80`
-
 export const agriPage = {
-  /* Rotating photo hero banners at the top of the page */
+  /* All photos are bundled in public/images/agri/ — swap any file (keeping
+     the same name) to change a picture without touching code. */
+
+  /* Rotating photo hero banners — auto-advance + arrow controls */
   banners: [
     {
-      eyebrow: 'Agri Exports · Worldwide',
-      title: 'Manufacturers & exporters of\npremium Indian agri produce.',
-      text: 'Rice, spices and sugar from Indian farms to ports in 25+ countries — handled end to end.',
-      img: U('photo-1536304929831-ee1ca9d44906'),
+      eyebrow: 'From Indian Farms · To 25+ Countries',
+      title: 'From Indian soil,\nto the world’s table.',
+      text: 'Premium rice, hand-selected spices and refined sugar — grown by trusted farmers and shipped end to end.',
+      img: '/images/agri/field-green.jpg',
     },
     {
-      eyebrow: 'Farm to Freight',
-      title: 'From the farm,\nto the freight, to you.',
-      text: 'Container-load exports with assured quality, full documentation and on-time delivery.',
-      img: U('photo-1494412574643-ff11b0a5c1c3'),
+      eyebrow: 'Rooted in 2000+ Farm Partnerships',
+      title: 'Grown by farmers\nwe know by name.',
+      text: 'We source directly from 2000+ farmer partners — fair, traceable and committed to quality right from the root.',
+      img: '/images/agri/bn-farmer.jpg',
     },
     {
-      eyebrow: 'Your Global Agri Partner',
-      title: 'Sourced with care,\ndelivered with precision.',
-      text: 'A single trusted partner for sourcing, processing, packing and global logistics.',
-      img: U('photo-1574323347407-f5e1ad6d020b'),
+      eyebrow: 'Cultivated with Care',
+      title: 'Nurtured by hand,\nseason after season.',
+      text: 'From transplanting to crop care, every paddy is tended for the best taste, aroma and nutrition.',
+      img: '/images/agri/bn-harvest.jpg',
+    },
+    {
+      eyebrow: 'Harvested at Peak Maturity',
+      title: 'The right grain,\nat the right time.',
+      text: 'Harvested at peak maturity and rushed to our mills to lock in freshness, flavour and quality.',
+      img: '/images/agri/harvest.jpg',
+    },
+    {
+      eyebrow: 'Processed to Export Grade',
+      title: 'Milled, graded\n& stored with care.',
+      text: 'Automated milling, optical colour-sorting and climate-controlled storage — backed by an in-house quality lab.',
+      img: '/images/agri/bn-warehouse.jpg',
+    },
+    {
+      eyebrow: 'Beyond Rice',
+      title: 'Spices, sugar\n& pulses too.',
+      text: 'High-curcumin turmeric, vibrant red chilli, refined sugar and wholesome pulses — a full agri-basket for the world.',
+      img: '/images/agri/turmeric.jpg',
+    },
+    {
+      eyebrow: 'Delivered End to End',
+      title: 'Shipped to the world,\non time, every time.',
+      text: 'FCL, LCL and bulk exports with full documentation and on-time delivery to ports in 25+ countries.',
+      img: '/images/agri/bn-port.jpg',
     },
   ],
 
+  /* Top "shop by category" image strip (maruti-style) */
+  productCats: [
+    { name: 'Rice', img: '/images/agri/cat-rice.jpg', to: '#products' },
+    { name: 'Spices', img: '/images/agri/cat-spices.jpg', to: '#beyond-rice' },
+    { name: 'Sugar', img: '/images/agri/cat-sugar.jpg', to: '#beyond-rice' },
+    { name: 'Pulses', img: '/images/agri/cat-pulses.jpg', to: '#beyond-rice' },
+  ],
+
+  /* End-to-end "Seed to Shipment" journey — real photos, start → finish */
+  journey: [
+    { title: 'Sowing & Planting',     desc: 'Quality seed transplanted into prepared paddies by our 2000+ farmer partners.', img: '/images/agri/field-paddy.jpg' },
+    { title: 'Cultivation',           desc: 'Months of careful irrigation, nutrition and crop care across 40+ acres.',         img: '/images/agri/field-green.jpg' },
+    { title: 'Harvesting',            desc: 'Grain harvested at peak maturity for the best taste, aroma and nutrition.',        img: '/images/agri/harvest.jpg' },
+    { title: 'Milling & Processing',  desc: 'De-stoning, milling and optical colour-sorting to clean, export-grade grain.',    img: '/images/agri/mill.jpg' },
+    { title: 'Packaging',             desc: 'Food-grade, export-ready packing in custom weights, bags and private brands.',     img: '/images/agri/ship-breakbulk.jpg' },
+    { title: 'Export & Delivery',     desc: 'FCL, LCL and bulk shipments delivered on time to ports in 25+ countries.',        img: '/images/agri/ship-fcl.jpg' },
+  ],
+
   /* Large photo beside the "Welcome to Aerovexa Agriculture" intro */
-  welcomeImg: U('photo-1625246333195-78d9c38ad449'),
+  welcomeImg: '/images/agri/intro.jpg',
 
   hero: {
     tagline: 'From the soil to the world — grain by grain.',
@@ -485,38 +541,38 @@ export const agriPage = {
   about:
     'What began as one family’s dream has grown into a trusted name in agri-export. We combine traditional farming wisdom with modern milling, sorting and quality control — so every consignment meets and exceeds international standards.',
 
-  /* "Nature's best · Farm to Export" — six illustrated/photographed steps */
+  /* "Nature's best · Farm to Export" — six icon steps (maruti-style) */
   process: [
-    { title: 'Sourcing',            desc: 'Hand-picked paddy and produce from 2000+ trusted farmer partners.',        kind: 'sonamasoori', img: U('photo-1500382017468-9049fed747ef') },
-    { title: 'Cleaning & Drying',   desc: 'Mechanical drying and de-stoning to lock in quality and shelf life.',       kind: 'kaima',       img: U('photo-1574943320219-553eb213f72d') },
-    { title: 'Milling & Grading',   desc: 'Automated milling with optical colour-sorting for uniform grain.',          kind: 'ponni',       img: U('photo-1586201375761-83865001e31c') },
-    { title: 'Quality Lab',         desc: 'In-house lab testing for moisture, purity and export compliance.',          kind: 'basmati',     img: U('photo-1581093458791-9d42e3c7e117') },
-    { title: 'Packaging',           desc: 'Food-grade, export-ready packing in custom weights and brands.',            kind: 'sugar',       img: U('photo-1607301406259-dfb186e15de8') },
-    { title: 'Logistics & Export',  desc: 'Documentation, FCL/LCL booking and on-time delivery to global ports.',      kind: 'pulses',      img: U('photo-1601584115197-04ecc0da31d7') },
+    { title: 'Harvesting',           desc: 'Hand-picked paddy and produce from 2000+ trusted farmer partners.',     kind: 'harvest' },
+    { title: 'Processing & Milling', desc: 'Automated milling and de-stoning that lock in quality and shelf life.',  kind: 'mill' },
+    { title: 'Sorting & Grading',    desc: 'Optical colour-sorting for clean, uniform, export-grade grain.',         kind: 'sort' },
+    { title: 'Quality Check',        desc: 'In-house lab testing for moisture, purity and export compliance.',       kind: 'inspect' },
+    { title: 'Packaging',            desc: 'Food-grade, export-ready packing in custom weights and brands.',         kind: 'pack' },
+    { title: 'Storage & Export',     desc: 'Climate-controlled storage, documentation and on-time global delivery.', kind: 'ship' },
   ],
 
   varieties: [
-    { name: 'Sona Masoori',        desc: 'Lightweight, aromatic rice balancing taste, nutrition and consistency.', kind: 'sonamasoori', tag: 'Premium Rice',  img: U('photo-1586201375761-83865001e31c') },
-    { name: 'Kaima (Jeerakasala)', desc: 'Short-grain, naturally fragrant rice — light and fluffy when cooked.',   kind: 'kaima',       tag: 'Aromatic',      img: U('photo-1536304993881-ff6e9eefa2a6') },
-    { name: 'Ponni Rice',          desc: 'Wholesome, delicately flavoured rice, a South-Indian staple.',           kind: 'ponni',       tag: 'Staple',        img: U('photo-1626016570496-9b10c86fa1d5') },
-    { name: 'Basmati',             desc: 'Long-grain aromatic rice, export grade for global cuisine.',             kind: 'basmati',     tag: 'Export Grade',  img: U('photo-1516684732162-798a0062be99') },
+    { name: 'Sona Masoori',        desc: 'Lightweight, aromatic rice balancing taste, nutrition and consistency.', kind: 'sonamasoori', tag: 'Premium Rice',  img: '/images/agri/rice-sona.jpg' },
+    { name: 'Kaima (Jeerakasala)', desc: 'Short-grain, naturally fragrant rice — light and fluffy when cooked.',   kind: 'kaima',       tag: 'Aromatic',      img: '/images/agri/rice-kaima.jpg' },
+    { name: 'Ponni Rice',          desc: 'Wholesome, delicately flavoured rice, a South-Indian staple.',           kind: 'ponni',       tag: 'Staple',        img: '/images/agri/rice-ponni.jpg' },
+    { name: 'Basmati',             desc: 'Long-grain aromatic rice, export grade for global cuisine.',             kind: 'basmati',     tag: 'Export Grade',  img: '/images/agri/rice-basmati.jpg' },
   ],
 
   alsoExport: [
-    { name: 'Turmeric',         desc: 'High-curcumin whole & ground turmeric.', kind: 'turmeric', tag: 'Spice',     img: U('photo-1615485290382-441e4d049cb5') },
-    { name: 'Red Chilli',       desc: 'Vibrant, pungent chilli — whole & powder.', kind: 'chilli', tag: 'Spice',     img: U('photo-1583524505974-6facd53f4597') },
-    { name: 'Refined Sugar',    desc: 'Refined & raw sugar for bulk export.',    kind: 'sugar',    tag: 'Sweetener', img: U('photo-1581281863883-2469417a1668') },
-    { name: 'Pulses & Grains',  desc: 'Lentils, dal and assorted grains.',       kind: 'pulses',   tag: 'Protein',   img: U('photo-1515942400420-2b98fed1f515') },
+    { name: 'Turmeric',         desc: 'High-curcumin whole & ground turmeric.', kind: 'turmeric', tag: 'Spice',     img: '/images/agri/turmeric.jpg' },
+    { name: 'Red Chilli',       desc: 'Vibrant, pungent chilli — whole & powder.', kind: 'chilli', tag: 'Spice',     img: '/images/agri/chilli.jpg' },
+    { name: 'Refined Sugar',    desc: 'Refined & raw sugar for bulk export.',    kind: 'sugar',    tag: 'Sweetener', img: '/images/agri/sugar.jpg' },
+    { name: 'Pulses & Grains',  desc: 'Lentils, dal and assorted grains.',       kind: 'pulses',   tag: 'Protein',   img: '/images/agri/pulses.jpg' },
   ],
 
-  /* Import & export shipment types — illustrated cargo cards */
+  /* Import & export shipment types — real cargo photos */
   shipmentTypes: [
-    { name: 'FCL — Full Container Load', desc: 'Dedicated 20ft & 40ft containers for high-volume rice, sugar and grain consignments.', kind: 'fcl',       tag: 'Container',    img: U('photo-1605281317010-fe5ffe798166') },
-    { name: 'LCL — Groupage',            desc: 'Consolidated less-than-container loads for mixed and smaller export orders.',          kind: 'lcl',       tag: 'Consolidated', img: U('photo-1601584115197-04ecc0da31d7') },
-    { name: 'Reefer — Cold Chain',       desc: 'Temperature-controlled reefer units for perishables and moisture-sensitive produce.', kind: 'reefer',    tag: 'Refrigerated', img: U('photo-1601598851547-4302969d0614') },
-    { name: 'Bulk Vessel',               desc: 'Dry-bulk vessel shipments for large-scale grain and sugar cargo across trade routes.', kind: 'bulkship',  tag: 'Sea Freight',  img: U('photo-1578575437130-527eed3abbec') },
-    { name: 'Air Cargo',                 desc: 'Time-critical air freight for premium spices, samples and urgent consignments.',       kind: 'aircargo',  tag: 'Air Freight',  img: U('photo-1542296332-2e4473faf563') },
-    { name: 'Break-Bulk',                desc: 'Palletised and bagged cargo handling for flexible, port-to-port movement.',            kind: 'breakbulk', tag: 'Palletised',   img: U('photo-1553413077-190dd305871c') },
+    { name: 'FCL — Full Container Load', desc: 'Dedicated 20ft & 40ft containers for high-volume rice, sugar and grain consignments.', kind: 'fcl',       tag: 'Container',    img: '/images/agri/ship-fcl.jpg' },
+    { name: 'LCL — Groupage',            desc: 'Consolidated less-than-container loads for mixed and smaller export orders.',          kind: 'lcl',       tag: 'Consolidated', img: '/images/agri/ship-lcl.jpg' },
+    { name: 'Reefer — Cold Chain',       desc: 'Temperature-controlled reefer units for perishables and moisture-sensitive produce.', kind: 'reefer',    tag: 'Refrigerated', img: '/images/agri/ship-reefer.jpg' },
+    { name: 'Bulk Vessel',               desc: 'Dry-bulk vessel shipments for large-scale grain and sugar cargo across trade routes.', kind: 'bulkship',  tag: 'Sea Freight',  img: '/images/agri/ship-bulk.jpg' },
+    { name: 'Air Cargo',                 desc: 'Time-critical air freight for premium spices, samples and urgent consignments.',       kind: 'aircargo',  tag: 'Air Freight',  img: '/images/agri/ship-air.jpg' },
+    { name: 'Break-Bulk',                desc: 'Palletised and bagged cargo handling for flexible, port-to-port movement.',            kind: 'breakbulk', tag: 'Palletised',   img: '/images/agri/ship-breakbulk.jpg' },
   ],
 
   whyChoose: [
@@ -552,6 +608,193 @@ export const agriPage = {
   },
 }
 
+/* ───────────────────────────────────────────────────────────────────────────
+ *  DIVISION SHOWCASE PAGES — Electronics, Jewellery, Logistics
+ *  Same data-driven layout as the Agriculture page (rendered by
+ *  components/DivisionShowcase.jsx). All images are bundled under
+ *  public/images/<division>/ (logistics reuses the agri cargo photos).
+ * ─────────────────────────────────────────────────────────────────────────── */
+export const divisionPages = {
+  electronics: {
+    banners: [
+      { eyebrow: 'Imported · Modified · Market-Ready', title: 'Electronics,\nengineered to spec.', text: 'CC cameras, televisions, components, microcontrollers and gadgets — sourced globally and tuned for your market.', img: '/images/electronics/el-assembly.jpg' },
+      { eyebrow: 'Surveillance & Security', title: 'See everything,\nmiss nothing.', text: 'CCTV, IP and PTZ camera systems for homes, enterprises and smart cities.', img: '/images/electronics/el-camera.jpg' },
+      { eyebrow: 'Displays & Televisions', title: 'Brilliant screens,\nfor every space.', text: 'Smart TVs, panels and large-format displays — imported and configured to order.', img: '/images/electronics/el-tv.jpg' },
+      { eyebrow: 'Components & Boards', title: 'From bare boards\nto finished builds.', text: 'ICs, resistors, capacitors, microcontrollers and dev boards for makers and OEMs.', img: '/images/electronics/el-components.jpg' },
+      { eyebrow: 'Sourced Globally · Shipped Worldwide', title: 'Delivered to your\ndoor, end to end.', text: 'QC-tested, custom-modified and export-packed — with full logistics support.', img: '/images/agri/ship-fcl.jpg' },
+    ],
+    catsEyebrow: 'Our Range', catsTitle: 'Shop by Category', catsSub: 'From surveillance to silicon — a full spectrum of imported and modified electronics.',
+    productCats: [
+      { name: 'CC Cameras', img: '/images/electronics/el-camera.jpg', to: '#products' },
+      { name: 'Televisions', img: '/images/electronics/el-tv.jpg', to: '#products' },
+      { name: 'Components', img: '/images/electronics/el-components.jpg', to: '#products' },
+      { name: 'Gadgets', img: '/images/electronics/el-gadgets.jpg', to: '#products' },
+    ],
+    stats: [{ value: '500+', label: 'Component SKUs' }, { value: '24/7', label: 'Sourcing desk' }, { value: '100%', label: 'QC tested' }, { value: '40+', label: 'Countries served' }],
+    intro: { eyebrow: 'Imported & Modified Electronics', title: 'Welcome to Aerovexa Electronics', text: ['We import and modify electronic components, gadgets, CC cameras, televisions and the full spectrum of devices — sourced from trusted global manufacturers.', 'Every unit is inspected, tuned to your specification and export-packed, so what arrives is genuinely market-ready.'], img: '/images/electronics/el-components.jpg', cta: { label: 'Talk to Sourcing', to: '/contact' } },
+    processEyebrow: 'Our Process', processTitle: 'Sourced · Tuned · Shipped', processSub: 'A disciplined workflow from global sourcing to your door.',
+    process: [
+      { title: 'Global Sourcing', desc: 'Direct from trusted manufacturers worldwide.', kind: 'source' },
+      { title: 'Inspection', desc: 'Incoming QC on every batch.', kind: 'inspect' },
+      { title: 'Modification', desc: 'Hardware tuned to your requirement.', kind: 'process' },
+      { title: 'Testing', desc: '100% functional testing before dispatch.', kind: 'sort' },
+      { title: 'Packing', desc: 'Anti-static, export-grade packaging.', kind: 'pack' },
+      { title: 'Shipping', desc: 'Tracked delivery to global ports and doors.', kind: 'ship' },
+    ],
+    productsEyebrow: 'Top Quality Products', productsTitle: 'What We Deal In', productsSub: 'From bare components to finished, market-ready gadgets.',
+    products: [
+      { name: 'CC Cameras', desc: 'CCTV, IP & PTZ surveillance systems for home and enterprise.', tag: 'Surveillance', kind: 'camera', img: '/images/electronics/el-camera.jpg' },
+      { name: 'Televisions', desc: 'Smart TVs, panels and large-format displays.', tag: 'Displays', kind: 'mcu', img: '/images/electronics/el-tv.jpg' },
+      { name: 'Components', desc: 'ICs, resistors, capacitors and electronic building blocks.', tag: 'Parts', kind: 'chip', img: '/images/electronics/el-components.jpg' },
+      { name: 'Microcontrollers', desc: 'MCUs, dev boards and embedded modules for makers & OEMs.', tag: 'Boards', kind: 'circuit', img: '/images/electronics/el-mcu.jpg' },
+      { name: 'Gadgets & Devices', desc: 'Consumer electronics and the latest imported gadgets.', tag: 'Consumer', kind: 'symbol', img: '/images/electronics/el-gadgets.jpg' },
+      { name: 'Modification', desc: 'Custom hardware tuning, soldering and repair to your spec.', tag: 'Custom', kind: 'breadboard', img: '/images/electronics/el-solder.jpg' },
+    ],
+    why: [
+      { t: 'Genuine Sourcing', d: 'Direct from trusted global manufacturers.', kind: 'globe' },
+      { t: '100% QC Tested', d: 'Every unit inspected before dispatch.', kind: 'inspect' },
+      { t: 'Custom Modification', d: 'Hardware tuned to your requirement.', kind: 'process' },
+      { t: 'Fast Turnaround', d: 'A 24/7 sourcing desk at your service.', kind: 'deliver' },
+    ],
+    reach: { title: 'Trusted across global markets', text: 'Aerovexa sources and ships electronics across 40+ countries.', regions: ['Middle East', 'Southeast Asia', 'Europe', 'Africa', 'Americas', 'Oceania'] },
+    shipEyebrow: 'Import & Export', shipTitle: 'How We Ship', shipSub: 'From a single carton to full containers — by the mode that fits your order.',
+    shipments: [
+      { name: 'FCL — Full Container', desc: 'Dedicated 20ft & 40ft containers for high-volume electronics consignments.', tag: 'Container', kind: 'cargo', img: '/images/agri/ship-fcl.jpg' },
+      { name: 'LCL — Groupage', desc: 'Consolidated less-than-container loads for mixed and smaller device orders.', tag: 'Consolidated', kind: 'cargo', img: '/images/agri/ship-lcl.jpg' },
+      { name: 'Air Freight', desc: 'Time-critical air freight for urgent, high-value devices and samples.', tag: 'Air', kind: 'air', img: '/images/agri/ship-air.jpg' },
+      { name: 'Sea Freight', desc: 'Cost-effective dry-bulk and container sea freight across global trade routes.', tag: 'Sea', kind: 'vessel', img: '/images/agri/ship-bulk.jpg' },
+      { name: 'Bonded Warehouse', desc: 'Secure, monitored bonded storage with anti-static handling and inventory control.', tag: 'Storage', kind: 'warehouse', img: '/images/agri/ship-reefer.jpg' },
+      { name: 'Door-to-Door', desc: 'Palletised, insured door-to-door delivery with full tracking and documentation.', tag: 'Delivery', kind: 'agricargo', img: '/images/agri/ship-breakbulk.jpg' },
+    ],
+    journeyEyebrow: 'Source to Shipment', journeyTitle: 'From Factory Floor to Your Door', journeySub: 'How an order moves through Aerovexa Electronics, end to end.',
+    journey: [
+      { title: 'Sourcing', desc: 'Components and devices sourced from global makers.', img: '/images/electronics/el-assembly.jpg' },
+      { title: 'Inspection', desc: 'Incoming quality control on every batch.', img: '/images/electronics/el-test.jpg' },
+      { title: 'Modification', desc: 'Soldering, tuning and custom hardware work.', img: '/images/electronics/el-solder.jpg' },
+      { title: 'Assembly & Test', desc: 'Functional testing before sign-off.', img: '/images/electronics/el-components.jpg' },
+      { title: 'Packing', desc: 'Anti-static, export-ready packaging.', img: '/images/agri/ship-breakbulk.jpg' },
+      { title: 'Shipping', desc: 'Tracked delivery to ports and doors worldwide.', img: '/images/agri/ship-fcl.jpg' },
+    ],
+    certsTitle: 'Certified & compliant', certsSub: 'Sourcing and trade backed by recognised quality standards.',
+    ctaTitle: 'Need electronics sourced or modified?', ctaText: 'Talk to our electronics desk for components, gadgets, CCTV, TVs and custom builds.',
+  },
+
+  jewellery: {
+    banners: [
+      { eyebrow: 'Gold · Diamond · Silver', title: 'Crafted to\nperfection.', text: 'Gold and diamond processing with chains, silver and finished pieces — export-grade precision.', img: '/images/jewellery/jw-diamondring.jpg' },
+      { eyebrow: 'Heritage Craftsmanship', title: 'Where artistry\nmeets gold.', text: 'Master artisans turn fine gold and certified stones into timeless pieces.', img: '/images/jewellery/jw-chains.jpg' },
+      { eyebrow: 'Certified Diamonds', title: 'Brilliance you\ncan trust.', text: 'Ethically sourced, certified loose and set diamonds for every design.', img: '/images/jewellery/jw-diamonds.jpg' },
+      { eyebrow: 'Necklaces & Bridal Sets', title: 'Statement pieces,\nfinely finished.', text: 'Necklaces, chains and bridal sets, hand-finished to brilliance.', img: '/images/jewellery/jw-necklace.jpg' },
+      { eyebrow: 'Refined Gold · Worldwide', title: 'From bullion\nto the boutique.', text: 'Gold processing and refining backed by hallmarking and global export.', img: '/images/jewellery/jw-gold.jpg' },
+    ],
+    catsEyebrow: 'Shop by Category', catsTitle: 'Our Collections', catsSub: 'Where heritage craft meets export-grade precision.',
+    productCats: [
+      { name: 'Rings', img: '/images/jewellery/jw-rings.jpg', to: '#products' },
+      { name: 'Chains', img: '/images/jewellery/jw-chains.jpg', to: '#products' },
+      { name: 'Diamonds', img: '/images/jewellery/jw-diamonds.jpg', to: '#products' },
+      { name: 'Silver', img: '/images/jewellery/jw-silver.jpg', to: '#products' },
+    ],
+    stats: [{ value: '22K', label: 'Gold purity' }, { value: 'GIA', label: 'Certified stones' }, { value: '100%', label: 'Hallmarked' }, { value: '40+', label: 'Countries served' }],
+    intro: { eyebrow: 'Gold & Diamond Craft', title: 'Welcome to Aerovexa Jewellery', text: ['Gold and diamond processing with a curated display of chains, silver jewellery and finished pieces — where heritage craft meets export-grade precision.', 'From hallmarked gold to GIA-certified stones, every piece is crafted, certified and finished to brilliance.'], img: '/images/jewellery/jw-necklace.jpg', cta: { label: 'Enquire Now', to: '/contact' } },
+    processEyebrow: 'Our Craft', processTitle: 'From Bullion to Brilliance', processSub: 'Six disciplined steps from raw gold to a finished, certified piece.',
+    process: [
+      { title: 'Sourcing', desc: 'Hallmarked gold and certified stones.', kind: 'source' },
+      { title: 'Refining', desc: 'Melting, alloying and casting.', kind: 'mill' },
+      { title: 'Design', desc: 'CAD and hand design to your brief.', kind: 'process' },
+      { title: 'Stone Setting', desc: 'Precision setting of diamonds and gems.', kind: 'sort' },
+      { title: 'Polishing', desc: 'Hand-polished to a flawless finish.', kind: 'inspect' },
+      { title: 'Hallmark & Deliver', desc: 'Certified, hallmarked and securely shipped.', kind: 'deliver' },
+    ],
+    productsEyebrow: 'Our Collections', productsTitle: 'Shop by Category', productsSub: 'Rings, chains, diamonds, necklaces, silver and finished pieces.',
+    products: [
+      { name: 'Rings', desc: 'Solitaire, band and statement rings.', tag: 'Gold & Stone', kind: 'ring', img: '/images/jewellery/jw-rings.jpg' },
+      { name: 'Gold Chains', desc: 'Gold and rope chains in every weight.', tag: 'Gold', kind: 'chain', img: '/images/jewellery/jw-chains.jpg' },
+      { name: 'Diamonds', desc: 'Loose and set, certified stones.', tag: 'Certified', kind: 'diamond', img: '/images/jewellery/jw-diamonds.jpg' },
+      { name: 'Necklaces', desc: 'Finished necklace and bridal collections.', tag: 'Finished', kind: 'necklace', img: '/images/jewellery/jw-necklace.jpg' },
+      { name: 'Silver', desc: 'Sterling silver jewellery and ornaments.', tag: 'Sterling', kind: 'silver', img: '/images/jewellery/jw-silver.jpg' },
+      { name: 'Solitaire & Bridal', desc: 'Engagement solitaires and bespoke bridal pieces.', tag: 'Bespoke', kind: 'piece', img: '/images/jewellery/jw-diamondring.jpg' },
+    ],
+    why: [
+      { t: '22K Purity', d: 'Hallmarked, certified gold.', kind: 'inspect' },
+      { t: 'GIA Diamonds', d: 'Ethically sourced, certified stones.', kind: 'globe' },
+      { t: 'Master Craft', d: 'Heritage artisans, modern finish.', kind: 'process' },
+      { t: 'Bespoke Orders', d: 'Custom designs made to order.', kind: 'deliver' },
+    ],
+    reach: { title: 'Exported across the world', text: 'Gold, diamond and silver pieces delivered to clients worldwide.', regions: ['Middle East', 'GCC', 'Europe', 'Far East', 'Americas', 'Southeast Asia'] },
+    shipEyebrow: 'Secure Logistics', shipTitle: 'Insured, Secure Global Delivery', shipSub: 'High-value consignments shipped with insured, tracked, secure handling.',
+    shipments: [
+      { name: 'Secure Air Freight', desc: 'Insured, tracked air courier for high-value gold and diamond pieces.', tag: 'Air', kind: 'air', img: '/images/agri/ship-air.jpg' },
+      { name: 'Vaulted Storage', desc: 'Bonded, monitored vault storage and secure custody for consignments.', tag: 'Secure', kind: 'warehouse', img: '/images/agri/bn-warehouse.jpg' },
+      { name: 'Door-to-Door', desc: 'Sealed, insured door-to-door delivery to your destination worldwide.', tag: 'Delivery', kind: 'cargo', img: '/images/agri/ship-fcl.jpg' },
+      { name: 'Armoured Courier', desc: 'Guarded, insured armoured courier movement for premium high-value orders.', tag: 'Guarded', kind: 'cargo', img: '/images/agri/ship-lcl.jpg' },
+      { name: 'Customs & Compliance', desc: 'Full hallmarking, valuation, customs clearance and export documentation.', tag: 'Compliance', kind: 'warehouse', img: '/images/agri/ship-reefer.jpg' },
+      { name: 'Sea Freight', desc: 'Insured container sea freight for bulk bullion and trade consignments.', tag: 'Sea', kind: 'vessel', img: '/images/agri/ship-bulk.jpg' },
+    ],
+    certsTitle: 'Hallmarked & certified', certsSub: 'Every piece backed by recognised purity and quality certifications.',
+    ctaTitle: 'Looking for gold, diamond or silver pieces?', ctaText: 'Talk to our jewellery team for processing, certified stones and bespoke orders.',
+  },
+
+  logistics: {
+    productArt: 'shipment',
+    banners: [
+      { eyebrow: 'Air · Sea · Warehouse', title: 'Your global\ngrowth partner.', text: 'Air charter, air freight, warehousing, agri cargo, vessel operating and chartering — origin to destination.', img: '/images/agri/bn-port.jpg', cta: 'Our Services' },
+      { eyebrow: 'Air Freight & Charter', title: 'Speed when\nit matters.', text: 'Dedicated charters and scheduled air freight for time-critical cargo.', img: '/images/agri/ship-air.jpg', cta: 'Our Services' },
+      { eyebrow: 'Sea & Bulk', title: 'Scale across\nthe oceans.', text: 'Dry-bulk vessel operating and chartering across global trade routes.', img: '/images/agri/ship-bulk.jpg', cta: 'Our Services' },
+      { eyebrow: 'Containers & Consolidation', title: 'Every box,\ntracked end to end.', text: 'FCL and LCL container movements with full documentation and visibility.', img: '/images/agri/ship-fcl.jpg', cta: 'Our Services' },
+      { eyebrow: 'Warehousing & Distribution', title: 'Stored, picked,\ndistributed.', text: 'Secure, monitored warehousing with inventory and value-added services.', img: '/images/agri/bn-warehouse.jpg', cta: 'Our Services' },
+    ],
+    catsEyebrow: 'What We Do', catsTitle: 'Our Services', catsSub: 'Six specialised lines, end to end.',
+    productCats: [
+      { name: 'Air Freight', img: '/images/agri/ship-air.jpg', to: '#products' },
+      { name: 'Sea Freight', img: '/images/agri/ship-bulk.jpg', to: '#products' },
+      { name: 'Containers', img: '/images/agri/ship-fcl.jpg', to: '#products' },
+      { name: 'Warehousing', img: '/images/agri/bn-warehouse.jpg', to: '#products' },
+    ],
+    stats: [{ value: '6', label: 'Service lines' }, { value: '40+', label: 'Ports reached' }, { value: '1000+', label: 'Shipments handled' }, { value: '99%', label: 'On-time delivery' }],
+    intro: { eyebrow: 'Logistics & Supply Chain', title: 'Your Global Growth Partner', text: ['Comprehensive logistics and supply-chain solutions to streamline operations, enhance efficiency and drive your global business growth.', 'Air, sea, road and warehouse under one roof — from first enquiry to final delivery.'], img: '/images/agri/bn-port.jpg', cta: { label: 'Get in Touch', to: '/contact' } },
+    processEyebrow: 'How We Work', processTitle: 'How We Move Your Cargo', processSub: 'A disciplined workflow from first enquiry to final delivery.',
+    process: [
+      { title: 'Enquiry', desc: 'We scope your cargo, route and timeline.', kind: 'source' },
+      { title: 'Planning', desc: 'Mode, carrier and schedule optimised.', kind: 'process' },
+      { title: 'Documentation', desc: 'Customs, compliance and paperwork.', kind: 'inspect' },
+      { title: 'Handling', desc: 'Pickup, consolidation and loading.', kind: 'logistics' },
+      { title: 'Transit', desc: 'Tracked movement across the globe.', kind: 'ship' },
+      { title: 'Delivery', desc: 'On-time delivery to door or port.', kind: 'deliver' },
+    ],
+    productsEyebrow: 'What We Do', productsTitle: 'Our Services', productsSub: 'Six specialised services — select a card to see how we deliver, end to end.',
+    products: [
+      { name: 'Air Charter', desc: 'Dedicated aircraft for urgent, oversized and AOG cargo.', tag: 'Air', kind: 'air', img: '/images/agri/ship-air.jpg' },
+      { name: 'Air Freight', desc: 'Scheduled and consolidated air freight with full visibility.', tag: 'Air', kind: 'air', img: '/images/agri/ship-air.jpg' },
+      { name: 'Warehouse', desc: 'Secure storage, inventory management and distribution.', tag: 'Storage', kind: 'warehouse', img: '/images/agri/bn-warehouse.jpg' },
+      { name: 'Agri Cargo', desc: 'Perishable and bulk agri handling, farm to port.', tag: 'Perishable', kind: 'agricargo', img: '/images/agri/ship-reefer.jpg' },
+      { name: 'Vessel Operating', desc: 'Dry-bulk vessel operating across global trade routes.', tag: 'Sea', kind: 'vessel', img: '/images/agri/ship-bulk.jpg' },
+      { name: 'Chartering', desc: 'Voyage and time charters matched to your cargo.', tag: 'Charter', kind: 'cargo', img: '/images/agri/ship-fcl.jpg' },
+      { name: 'Customs Clearance', desc: 'Import and export customs brokerage, duties and compliance documentation.', tag: 'Customs', kind: 'warehouse', img: '/images/logistics/lg-warehouse.jpg' },
+      { name: 'Project Cargo', desc: 'Heavy, oversized and out-of-gauge project cargo, engineered end to end.', tag: 'Heavy-Lift', kind: 'vessel', img: '/images/agri/ship-bulk.jpg' },
+      { name: 'Road Freight', desc: 'FTL and LTL road haulage with first-mile pickup and last-mile delivery.', tag: 'Road', kind: 'cargo', img: '/images/agri/ship-lcl.jpg' },
+      { name: 'Door-to-Door Express', desc: 'Fully managed door-to-door express movement with live end-to-end tracking.', tag: 'Express', kind: 'agricargo', img: '/images/agri/ship-breakbulk.jpg' },
+    ],
+    why: [
+      { t: 'Global Network', d: 'Partners across 40+ ports worldwide.', kind: 'globe' },
+      { t: 'Multi-Modal', d: 'Air, sea, road and warehouse under one roof.', kind: 'logistics' },
+      { t: 'Live Tracking', d: 'Real-time visibility on every shipment.', kind: 'inspect' },
+      { t: 'Agri Expertise', d: 'Perishable and bulk cargo specialists.', kind: 'store' },
+    ],
+    reach: { title: 'Moving cargo across the globe', text: 'From the Middle East to the Americas — Aerovexa moves cargo across the world’s trade routes.', regions: ['Middle East', 'Southeast Asia', 'Europe', 'Africa', 'Americas', 'Oceania'] },
+    journeyEyebrow: 'End to End', journeyTitle: 'From Enquiry to Delivery', journeySub: 'Every shipment, handled start to finish.',
+    journey: [
+      { title: 'Enquiry & Quote', desc: 'Cargo, route and timeline scoped.', img: '/images/agri/bn-port.jpg' },
+      { title: 'Booking & Docs', desc: 'Carrier booked, customs documented.', img: '/images/agri/ship-fcl.jpg' },
+      { title: 'Handling', desc: 'Pickup, consolidation and loading.', img: '/images/logistics/lg-warehouse.jpg' },
+      { title: 'Air & Sea Transit', desc: 'Tracked movement worldwide.', img: '/images/agri/ship-air.jpg' },
+      { title: 'Vessel & Bulk', desc: 'Bulk and break-bulk across the oceans.', img: '/images/agri/ship-bulk.jpg' },
+      { title: 'Final Delivery', desc: 'On-time delivery to door or port.', img: '/images/agri/ship-breakbulk.jpg' },
+    ],
+    certsTitle: 'Trusted & compliant', certsSub: 'Accredited for safe, compliant global movement.',
+    ctaTitle: 'Have a shipment in mind?', ctaText: 'Talk to our logistics team for air, sea and warehouse solutions — quoted end to end.',
+  },
+}
+
 /* Why Aerovexa — shown on the About page */
 export const whyAerovexa = [
   { t: 'Four Specialised Divisions', d: 'Electronics, Agriculture, Jewellery and Logistics — one accountable partner.' },
@@ -564,3 +807,119 @@ export const whyAerovexa = [
 
 /* Certifications / trust badges (text-based, like the reference sites) */
 export const certifications = ['ISO 9001', 'APEDA', 'FIEO', 'HACCP', 'Hallmarked', 'AEO']
+
+/* ───────────────────────────────────────────────────────────────────────────
+ *  GALLERY PAGE — real photos per division (rendered by pages/Gallery.jsx).
+ *  Each category has a background header image + a grid of captioned photos.
+ * ─────────────────────────────────────────────────────────────────────────── */
+export const galleries = [
+  {
+    id: 'electronics', name: 'Electronics', accent: '#1f6fe0', accentDeep: '#1450ab',
+    bg: '/images/electronics/el-assembly.jpg',
+    blurb: 'Circuits, components, microcontrollers, breadboards, CC cameras, displays & gadgets.',
+    items: [
+      { src: '/images/electronics/el-circuit.jpg', label: 'Circuit Boards' },
+      { src: '/images/electronics/el-components.jpg', label: 'Components' },
+      { src: '/images/electronics/el-mcu.jpg', label: 'Microcontrollers' },
+      { src: '/images/electronics/el-breadboard.jpg', label: 'Breadboards' },
+      { src: '/images/electronics/el-motherboard.jpg', label: 'Motherboards' },
+      { src: '/images/electronics/el-ic.jpg', label: 'Integrated Circuits' },
+      { src: '/images/electronics/el-transistor.jpg', label: 'Transistors' },
+      { src: '/images/electronics/el-resistors.jpg', label: 'Resistors' },
+      { src: '/images/electronics/el-capacitors.jpg', label: 'Capacitors' },
+      { src: '/images/electronics/el-sensor.jpg', label: 'Sensors & Modules' },
+      { src: '/images/electronics/el-cable.jpg', label: 'Cables & Connectors' },
+      { src: '/images/electronics/el-camera.jpg', label: 'CC Cameras' },
+      { src: '/images/electronics/el-tv.jpg', label: 'Televisions' },
+      { src: '/images/electronics/el-gadgets.jpg', label: 'Gadgets & Devices' },
+      { src: '/images/electronics/el-smartphone.jpg', label: 'Smart Devices' },
+      { src: '/images/electronics/el-drone.jpg', label: 'Drones & UAVs' },
+      { src: '/images/electronics/el-scope.jpg', label: 'Test Instruments' },
+      { src: '/images/electronics/el-server.jpg', label: 'Servers & Racks' },
+      { src: '/images/electronics/el-solder.jpg', label: 'Modification' },
+      { src: '/images/electronics/el-assembly.jpg', label: 'Manufacturing' },
+      { src: '/images/electronics/el-test.jpg', label: 'Testing & QC' },
+    ],
+  },
+  {
+    id: 'agriculture', name: 'Agriculture', accent: '#2e9e4f', accentDeep: '#1f7a3a',
+    bg: '/images/agri/field-green.jpg',
+    blurb: 'Premium rice varieties, hand-selected spices, refined sugar and wholesome pulses.',
+    items: [
+      { src: '/images/agri/cat-rice.jpg', label: 'Rice Grains' },
+      { src: '/images/agri/rice-sona.jpg', label: 'Sona Masoori' },
+      { src: '/images/agri/rice-kaima.jpg', label: 'Kaima Rice' },
+      { src: '/images/agri/rice-ponni.jpg', label: 'Ponni Rice' },
+      { src: '/images/agri/rice-basmati.jpg', label: 'Basmati' },
+      { src: '/images/agri/ag-wheat.jpg', label: 'Wheat & Cereals' },
+      { src: '/images/agri/turmeric.jpg', label: 'Turmeric' },
+      { src: '/images/agri/chilli.jpg', label: 'Red Chilli' },
+      { src: '/images/agri/ag-pepper.jpg', label: 'Black Pepper' },
+      { src: '/images/agri/ag-cumin.jpg', label: 'Cumin' },
+      { src: '/images/agri/ag-cardamom.jpg', label: 'Cardamom' },
+      { src: '/images/agri/cat-spices.jpg', label: 'Mixed Spices' },
+      { src: '/images/agri/sugar.jpg', label: 'Refined Sugar' },
+      { src: '/images/agri/cat-sugar.jpg', label: 'Sugar Crystals' },
+      { src: '/images/agri/ag-jaggery.jpg', label: 'Jaggery' },
+      { src: '/images/agri/pulses.jpg', label: 'Pulses & Dal' },
+      { src: '/images/agri/field-green.jpg', label: 'Paddy Fields' },
+      { src: '/images/agri/ag-tractor.jpg', label: 'Farm Mechanisation' },
+      { src: '/images/agri/harvest.jpg', label: 'Harvest' },
+      { src: '/images/agri/mill.jpg', label: 'Milling & Processing' },
+    ],
+  },
+  {
+    id: 'jewellery', name: 'Jewellery', accent: '#b88a2e', accentDeep: '#8f6a1e',
+    bg: '/images/jewellery/jw-diamondring.jpg',
+    blurb: 'Rings, gold chains, diamonds, necklaces, pendants, earrings, silver & bullion.',
+    items: [
+      { src: '/images/jewellery/jw-rings.jpg', label: 'Rings' },
+      { src: '/images/jewellery/jw-diamondring.jpg', label: 'Solitaire Rings' },
+      { src: '/images/jewellery/jw-chains.jpg', label: 'Gold Chains' },
+      { src: '/images/jewellery/jw-necklace.jpg', label: 'Necklaces' },
+      { src: '/images/jewellery/jw-goldset.jpg', label: 'Gold Necklace Sets' },
+      { src: '/images/jewellery/jw-goldbeads.jpg', label: 'Gold & Bead Pieces' },
+      { src: '/images/jewellery/jw-pendant.jpg', label: 'Pendants' },
+      { src: '/images/jewellery/jw-earrings.jpg', label: 'Earrings' },
+      { src: '/images/jewellery/jw-bangles.jpg', label: 'Gold Bangles' },
+      { src: '/images/jewellery/jw-bracelet.jpg', label: 'Bracelets' },
+      { src: '/images/jewellery/jw-anklet.jpg', label: 'Anklets' },
+      { src: '/images/jewellery/jw-brooch.jpg', label: 'Brooches' },
+      { src: '/images/jewellery/jw-silver.jpg', label: 'Silver' },
+      { src: '/images/jewellery/jw-pearl.jpg', label: 'Pearls' },
+      { src: '/images/jewellery/jw-diamonds.jpg', label: 'Diamonds' },
+      { src: '/images/jewellery/jw-ruby.jpg', label: 'Ruby & Coral' },
+      { src: '/images/jewellery/jw-sapphire.jpg', label: 'Sapphire' },
+      { src: '/images/jewellery/jw-watch.jpg', label: 'Timepieces' },
+      { src: '/images/jewellery/jw-gold.jpg', label: 'Gold Bullion' },
+      { src: '/images/jewellery/jw-coins.jpg', label: 'Gold Bars' },
+    ],
+  },
+  {
+    id: 'logistics', name: 'Logistics', accent: '#0e8a8f', accentDeep: '#0a6669',
+    bg: '/images/agri/bn-port.jpg',
+    blurb: 'Air charter & freight, warehousing, agri cargo, vessel operating and chartering.',
+    items: [
+      { src: '/images/agri/ship-air.jpg', label: 'Air Charter & Freight' },
+      { src: '/images/logistics/lo-cargoplane.jpg', label: 'Air Cargo Loading' },
+      { src: '/images/agri/ship-fcl.jpg', label: 'FCL Containers' },
+      { src: '/images/agri/ship-lcl.jpg', label: 'LCL Groupage' },
+      { src: '/images/agri/ship-bulk.jpg', label: 'Vessel Operating' },
+      { src: '/images/logistics/lo-shipsea.jpg', label: 'Container Vessels' },
+      { src: '/images/agri/ship-reefer.jpg', label: 'Agri / Reefer Cargo' },
+      { src: '/images/agri/ship-breakbulk.jpg', label: 'Break-Bulk' },
+      { src: '/images/agri/bn-port.jpg', label: 'Port Operations' },
+      { src: '/images/logistics/lo-terminal.jpg', label: 'Container Terminal' },
+      { src: '/images/logistics/lo-dock.jpg', label: 'Dock Handling' },
+      { src: '/images/logistics/lo-crane.jpg', label: 'Gantry Cranes' },
+      { src: '/images/logistics/lo-yard.jpg', label: 'Container Yard' },
+      { src: '/images/logistics/lo-forklift.jpg', label: 'Warehousing' },
+      { src: '/images/logistics/lo-pallet.jpg', label: 'Palletised Goods' },
+      { src: '/images/agri/bn-warehouse.jpg', label: 'Bonded Storage' },
+      { src: '/images/logistics/lg-warehouse.jpg', label: 'Distribution' },
+      { src: '/images/logistics/lo-truck.jpg', label: 'Road Freight' },
+      { src: '/images/logistics/lo-van.jpg', label: 'Last-Mile Delivery' },
+      { src: '/images/logistics/lo-train.jpg', label: 'Rail Freight' },
+    ],
+  },
+]

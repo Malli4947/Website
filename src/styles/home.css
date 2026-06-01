@@ -1,0 +1,139 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   HOME PAGE — photo hero backgrounds, division card imagery & section polish.
+   Reuses the global design system (.container, .block, .btn, .divcard, etc.).
+   Only home-specific additions live here.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Hero slider: real photo background + dark navy overlay ─────────────── */
+.slider {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Cross-fading photo layer behind the slider content. */
+.slider__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Legibility overlay — navy gradient, darker on the copy (left) side. */
+.slider__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(100deg, rgba(15, 29, 57, 0.92) 0%, rgba(15, 29, 57, 0.78) 45%, rgba(15, 29, 57, 0.45) 100%),
+    radial-gradient(900px 500px at 85% 20%, rgba(216, 170, 78, 0.18), transparent 60%);
+}
+
+/* Keep the slider's own glow + content stacked above the photo. */
+.slider .slider__glow { z-index: 1; }
+/* Single-column hero (the animated circle on the right was removed). */
+.slider .slider__inner { position: relative; z-index: 2; grid-template-columns: 1fr; }
+.slider .slider__content { max-width: 720px; }
+
+/* ── Division cards: small real photo header on the home grid ───────────── */
+.divcard { overflow: hidden; }
+
+.divcard__media {
+  position: relative;
+  margin: -26px -26px 18px;   /* bleed to the card edges (card pad ≈ 26px) */
+  height: 150px;
+  overflow: hidden;
+}
+.divcard__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.divcard:hover .divcard__media img { transform: scale(1.07); }
+.divcard__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--c) 55%, transparent) 100%);
+}
+.divcard__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--c);
+  box-shadow: var(--shadow-sm);
+}
+.divcard__num {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 2;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #fff;
+  opacity: 0.9;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* ── About teaser: gentle spacing polish + real photo visual ────────────── */
+.about__copy .section-title { line-height: 1.15; }
+
+.home-about__photo {
+  position: relative;
+  border-radius: 26px;
+  overflow: hidden;
+  min-height: 420px;
+  box-shadow: var(--shadow-lg);
+}
+.home-about__photo img {
+  width: 100%; height: 100%; min-height: 420px;
+  object-fit: cover; display: block;
+}
+.home-about__photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, transparent 35%, rgba(15, 29, 57, 0.7));
+}
+.home-about__badge {
+  position: absolute; bottom: 22px; left: 22px; right: 22px; z-index: 2;
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 20px; border-radius: 16px;
+  background: rgba(15, 29, 57, 0.55); border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px); color: #fff;
+}
+.home-about__badge .y { font-family: var(--font-head); font-weight: 800; font-size: 2rem; color: var(--gold); }
+.home-about__badge strong { display: block; font-size: 0.98rem; }
+.home-about__badge span { font-size: 0.84rem; opacity: 0.8; }
+@media (max-width: 600px) { .home-about__photo, .home-about__photo img { min-height: 300px; } }
+
+/* ── Global-reach region chips: subtle hover lift ───────────────────────── */
+.reach__region { transition: background 0.25s ease, transform 0.25s ease; }
+.reach__region:hover {
+  background: rgba(216, 170, 78, 0.18);
+  border-color: rgba(216, 170, 78, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  /* Soften the gradient so text stays readable on a full-width photo. */
+  .slider__overlay {
+    background:
+      linear-gradient(180deg, rgba(15, 29, 57, 0.82) 0%, rgba(15, 29, 57, 0.9) 100%);
+  }
+  .divcard__media { height: 140px; }
+}
+
+@media (max-width: 600px) {
+  .divcard__media { height: 160px; }
+}
