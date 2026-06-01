@@ -549,14 +549,26 @@ section { scroll-margin-top: 84px; }
 .footer a { display: block; font-size: 0.9rem; padding: 5px 0; transition: color 0.2s; }
 .footer a:hover { color: var(--gold); }
 .footer__about p { font-size: 0.9rem; margin: 16px 0 20px; max-width: 320px; }
-.footer__social { display: flex; gap: 10px; }
+.footer__social { display: flex; gap: 10px; flex-wrap: wrap; }
 .footer__social a {
   width: 38px; height: 38px; border-radius: 10px;
   display: grid; place-items: center;
   background: rgba(255,255,255,0.08); color: #fff;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s, transform 0.2s, filter 0.2s, box-shadow 0.2s;
 }
 .footer__social a:hover { background: var(--gold); color: var(--navy-deep); transform: translateY(-3px); }
+
+/* Brand-coloured variant: each icon wears its own platform colour, idle
+   and on hover alike (the colour stays the same — hover only lifts). */
+.footer__social--brand a {
+  background: var(--soc, var(--gold)); color: #fff;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 8px 18px -10px var(--soc, transparent);
+}
+.footer__social--brand a:hover {
+  background: var(--soc, var(--gold)); color: #fff;
+  transform: translateY(-3px); filter: brightness(1.1);
+}
 .footer__bar {
   margin-top: 44px; padding-top: 22px;
   border-top: 1px solid rgba(255,255,255,0.1);
@@ -576,6 +588,20 @@ section { scroll-margin-top: 84px; }
 }
 .wa:hover { transform: scale(1.08); }
 @keyframes waPulse { 0%,100%{box-shadow:0 12px 30px rgba(37,211,102,0.45)} 50%{box-shadow:0 12px 40px rgba(37,211,102,0.7)} }
+
+/* ── Back-to-top button (sits above the WhatsApp button) ────────────── */
+.to-top {
+  position: fixed; right: 22px; bottom: 88px; z-index: 90;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--navy); color: #fff; cursor: pointer;
+  display: grid; place-items: center;
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 12px 30px rgba(15,29,57,0.4);
+  opacity: 0; visibility: hidden; transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s, background 0.2s, color 0.2s;
+}
+.to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.to-top:hover { background: var(--gold); color: var(--navy-deep); transform: translateY(-3px); }
 
 /* ── Scroll progress bar ────────────────────────────────────────────── */
 .progress {
@@ -600,22 +626,27 @@ section { scroll-margin-top: 84px; }
 @media (max-width: 860px) {
   .nav__links { display: none; }
   .nav__burger { display: flex; }
+  /* Links collapse into the burger here, so there's room to show the full
+     company name again ("Aerovexa" + "Exim Private Limited"). */
+  .logo__sub { display: block; font-size: 0.55rem; letter-spacing: 0.16em; white-space: nowrap; }
   .nav__mobile {
-    display: block;
+    display: flex; flex-direction: column; gap: 12px;
     position: fixed; inset: 0 0 0 auto; width: min(320px, 82vw);
     background: #fff; box-shadow: var(--shadow-lg);
-    padding: 96px 24px 40px; z-index: 99;
+    padding: 96px 20px 40px; z-index: 121; overflow-y: auto;
     transform: translateX(100%); transition: transform 0.32s cubic-bezier(.6,0,.2,1);
   }
   .nav__mobile.open { transform: translateX(0); }
   .nav__mobile a {
-    display: block; padding: 14px 12px; font-weight: 500;
-    border-radius: 12px; color: var(--ink); border-bottom: 1px solid var(--line);
+    display: block; padding: 14px 16px; font-weight: 600;
+    border-radius: 12px; color: var(--ink);
+    background: var(--cream); border: 1px solid var(--line);
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
-  .nav__mobile a:hover { background: var(--cream); }
+  .nav__mobile a:hover { background: var(--accent-soft); color: var(--accent); transform: translateX(4px); }
   .nav__scrim {
-    position: fixed; inset: 0; background: rgba(15,29,57,0.4);
-    z-index: 98; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    position: fixed; inset: 0; background: rgba(15,29,57,0.5);
+    z-index: 120; opacity: 0; pointer-events: none; transition: opacity 0.3s;
   }
   .nav__scrim.show { opacity: 1; pointer-events: auto; }
 }
@@ -637,6 +668,9 @@ section { scroll-margin-top: 84px; }
   .reach__metrics { grid-template-columns: 1fr 1fr; }
   .hero__stats { gap: 22px; }
   .form { padding: 24px; }
+  /* Keep the full name on one line on small phones */
+  .logo__name { font-size: 1.2rem; }
+  .logo__sub { font-size: 0.5rem; letter-spacing: 0.1em; }
 }
 
 /* ════════════════════════════════════════════════════════════════════
@@ -646,7 +680,7 @@ section { scroll-margin-top: 84px; }
 .nav__link.active { color: var(--accent, var(--gold-deep)); }
 .nav--top .nav__link.active { color: #fff; }
 .nav--scrolled .nav__link.active { color: var(--navy); font-weight: 600; }
-.nav__mobile a.active { background: var(--cream); color: var(--navy); font-weight: 600; }
+.nav__mobile a.active { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 700; }
 
 /* ── Home banner slider ─────────────────────────────────────────────── */
 .slider {

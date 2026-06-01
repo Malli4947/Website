@@ -47,14 +47,17 @@
 }
 .ccompany__addr svg { flex-shrink: 0; color: var(--gold); margin-top: 3px; }
 .ccompany__map { margin-top: 26px; }
-.ccompany__social { display: flex; gap: 10px; margin-top: 28px; }
+.ccompany__social { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+/* Each icon wears its own platform colour, idle and on hover alike —
+   hover only lifts and brightens, so the original colour stays. */
 .ccompany__social a {
   width: 40px; height: 40px; border-radius: 11px;
   display: grid; place-items: center; color: #fff;
-  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
-  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  background: var(--soc, rgba(255,255,255,0.08)); border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 8px 18px -10px var(--soc, transparent);
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease, filter 0.2s ease;
 }
-.ccompany__social a:hover { background: var(--gold); color: var(--navy-deep); transform: translateY(-3px); }
+.ccompany__social a:hover { background: var(--soc, var(--gold)); color: #fff; transform: translateY(-3px); filter: brightness(1.1); }
 
 /* ── Contact channel cards ──────────────────────────────────────────── */
 .cinfo-cards {

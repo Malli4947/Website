@@ -33,12 +33,19 @@ export const contact = {
 /* Social media — swap these for your official profile URLs.
    Clicking a footer/contact icon opens the matching platform in a new tab. */
 export const social = [
-  { label: 'Facebook', icon: 'facebook', url: 'https://www.facebook.com/' },
-  { label: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/' },
-  { label: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/' },
-  { label: 'X', icon: 'x', url: 'https://x.com/' },
-  { label: 'YouTube', icon: 'youtube', url: 'https://www.youtube.com/' },
+  { label: 'Facebook', icon: 'facebook', url: 'https://www.facebook.com/', color: '#1877F2' },
+  { label: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/', color: '#E4405F' },
+  { label: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/', color: '#0A66C2' },
+  { label: 'X', icon: 'x', url: 'https://x.com/', color: '#000000' },
+  { label: 'YouTube', icon: 'youtube', url: 'https://www.youtube.com/', color: '#FF0000' },
 ]
+
+/* Brand colours for the non-social contact icons (WhatsApp / mail / phone). */
+export const channelColors = {
+  whatsapp: '#25D366',
+  mail: '#EA4335',
+  phone: '#16294d',
+}
 
 export const clients = [
   { name: 'Gunapati’s', note: 'Let’s grow together', logo: '/images/clients/gunapatis.jpg' },

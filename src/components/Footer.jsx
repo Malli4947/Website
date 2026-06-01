@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { LogoMark, UIIcon } from './Art.jsx'
-import { company, contact, divisions, social } from '../data/content.js'
+import { company, contact, divisions, social, channelColors } from '../data/content.js'
 
 /* Inline brand-glyph SVG paths keyed by icon name (sized 18px). */
 const ICON_PATHS = {
@@ -26,17 +26,17 @@ export default function Footer() {
               </span>
             </Link>
             <p>{company.pitch}</p>
-            <div className="footer__social">
+            <div className="footer__social footer__social--brand">
               {social.map((s) => (
-                <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.label} title={s.label}>
+                <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.label} title={s.label} style={{ '--soc': s.color }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d={ICON_PATHS[s.icon]} />
                   </svg>
                 </a>
               ))}
-              <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><UIIcon name="wa" size={18} /></a>
-              <a href={`mailto:${contact.email}`} aria-label="Email" title="Email"><UIIcon name="mail" size={18} /></a>
-              <a href={`tel:${contact.phones[0].replace(/\s/g, '')}`} aria-label="Phone" title="Phone"><UIIcon name="phone" size={18} /></a>
+              <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp" style={{ '--soc': channelColors.whatsapp }}><UIIcon name="wa" size={18} /></a>
+              {/* <a href={`mailto:${contact.email}`} aria-label="Email" title="Email" style={{ '--soc': channelColors.mail }}><UIIcon name="mail" size={18} /></a> */}
+              {/* <a href={`tel:${contact.phones[0].replace(/\s/g, '')}`} aria-label="Phone" title="Phone" style={{ '--soc': channelColors.phone }}><UIIcon name="phone" size={18} /></a> */}
             </div>
           </div>
 

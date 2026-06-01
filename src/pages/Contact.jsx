@@ -64,7 +64,7 @@ export default function Contact() {
               </a>
               <div className="ccompany__social" aria-label="Social media">
                 {social.map((s) => (
-                  <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.label} title={s.label}>
+                  <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.label} title={s.label} style={{ '--soc': s.color }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={ICON_PATHS[s.icon]} /></svg>
                   </a>
                 ))}
