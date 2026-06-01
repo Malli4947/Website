@@ -116,6 +116,24 @@
 .home-about__badge span { font-size: 0.84rem; opacity: 0.8; }
 @media (max-width: 600px) { .home-about__photo, .home-about__photo img { min-height: 300px; } }
 
+/* ── Home "What we do" tabs: panel footer (stats + CTA) ─────────────────── */
+.home-tabs__foot {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 20px;
+  margin-top: 26px; padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.home-tabs__stats { display: flex; flex-wrap: wrap; gap: 28px; }
+.home-tabs__stat b {
+  display: block; font-family: var(--font-head); font-weight: 800;
+  font-size: 1.7rem; line-height: 1; color: var(--accent);
+}
+.home-tabs__stat span { font-size: 0.8rem; color: var(--muted); }
+@media (max-width: 560px) {
+  .home-tabs__foot { flex-direction: column; align-items: flex-start; }
+  .home-tabs__stats { gap: 20px; }
+}
+
 /* ── Global-reach region chips: subtle hover lift ───────────────────────── */
 .reach__region { transition: background 0.25s ease, transform 0.25s ease; }
 .reach__region:hover {

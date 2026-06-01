@@ -6,10 +6,13 @@ import Strip from '../components/Strip.jsx'
 import Counters from '../components/Counters.jsx'
 import Clients from '../components/Clients.jsx'
 import CTABand from '../components/CTABand.jsx'
+import HomeTabs from '../components/HomeTabs.jsx'
+import DivisionProcess from '../components/DivisionProcess.jsx'
+import WhyChoose from '../components/WhyChoose.jsx'
 import { SectionHead } from '../components/Section.jsx'
 import Reveal, { Stagger, itemVar } from '../components/Reveal.jsx'
 import { DivisionIcon, UIIcon } from '../components/Art.jsx'
-import { divisions, company, globalReach } from '../data/content.js'
+import { divisions, company, globalReach, process } from '../data/content.js'
 import '../styles/home.css'
 
 /* Real photo header per division card (reuses on-disk division art). */
@@ -19,6 +22,16 @@ const divImg = {
   jewellery: '/images/jewellery/jw-diamondring.jpg',
   logistics: '/images/agri/bn-port.jpg',
 }
+
+/* Why-partner strengths (home overview — broader than any single division). */
+const homeWhy = [
+  { t: 'Single Accountable Partner', d: 'Four divisions, one contract, one team — no juggling separate vendors across sectors.' },
+  { t: 'Global Sourcing Network', d: 'Direct relationships with trusted manufacturers and farms across 40+ countries.' },
+  { t: 'Export-Grade Quality', d: 'Every consignment inspected, graded and certified to international standards.' },
+  { t: 'End-to-End Logistics', d: 'Air, sea and warehouse handling — origin to destination, fully tracked.' },
+  { t: 'Compliant & Certified', d: 'Full documentation, customs clearance and globally recognised quality marks.' },
+  { t: 'Responsive Service', d: 'A dedicated desk per division with fast quotes and clear communication.' },
+]
 
 export default function Home() {
   return (
@@ -82,6 +95,24 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      {/* ── Interactive "What we do" division tabs ─────────────── */}
+      <HomeTabs />
+
+      {/* ── How we work: source → deliver process band ─────────── */}
+      <DivisionProcess
+        steps={process}
+        title="From source to your door"
+        sub="One disciplined workflow runs across every division — so quality is protected from origin to final delivery."
+        alt
+      />
+
+      {/* ── Why partner with Aerovexa ──────────────────────────── */}
+      <WhyChoose
+        items={homeWhy}
+        title="Why businesses choose Aerovexa"
+        sub="The advantages of working with a single, accountable, multi-sector trade partner."
+      />
 
       {/* ── Global reach counters ──────────────────────────────── */}
       <section className="block reach">

@@ -69,6 +69,11 @@ export default function Navbar() {
           inside the bar and stop outside-clicks from closing the menu. */}
       <div className={`nav__scrim ${open ? 'show' : ''}`} onClick={() => setOpen(false)} />
       <aside className={`nav__mobile ${open ? 'open' : ''}`} aria-hidden={!open}>
+        <Link to="/" className="nav__mobile-head" aria-label="Aerovexa Exim home" onClick={() => setOpen(false)}>
+          <span className="nav__mobile-mark"><LogoMark size={52} /></span>
+          <span className="nav__mobile-name">Aero<span className="ex">vexa</span></span>
+          <span className="nav__mobile-sub">Exim Private Limited</span>
+        </Link>
         {navLinks.map((l) => (
           <NavLink key={l.to} to={l.to} end={l.end} onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'active' : '')}>
             {l.label}
