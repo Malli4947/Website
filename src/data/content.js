@@ -1,14 +1,4 @@
-/**
- * ───────────────────────────────────────────────────────────────────────────
- *  AEROVEXA EXIM — CONTENT / CMS LAYER
- * ───────────────────────────────────────────────────────────────────────────
- *  This file is the single source of truth for ALL editable site content.
- *  A non-technical editor (or a future headless CMS) only ever touches this
- *  file — banners, copy, gallery items, stats, contact details and the four
- *  division definitions all live here. Components read from it, so the layout
- *  never has to be edited to change words or images.
- * ───────────────────────────────────────────────────────────────────────────
- */
+
 
 export const company = {
   name: 'Aerovexa Exim',
